@@ -55,6 +55,7 @@ func new_plotter_proc(persist bool) (*plotter_process, error) {
 	fmt.Printf("--> [%v] %v\n", g_gnuplot_cmd, proc_args)
 	cmd := exec.Command(g_gnuplot_cmd, proc_args...)
 	stdin, err := cmd.StdinPipe()
+	cmd.Stdout = os.Stdout
 	if err != nil {
 		return nil, err
 	}
